@@ -8,13 +8,13 @@ import (
 )
 
 // ConnectDatabase initializes the database connection
-func ConnectDatabase(db *gorm.DB, databaseName string) {
-	var err error
-	db, err = gorm.Open(sqlite.Open(databaseName), &gorm.Config{})
+func ConnectDatabase(databaseName string) *gorm.DB {
+	db, err := gorm.Open(sqlite.Open(databaseName), &gorm.Config{})
 	if err != nil {
 		log.Fatalf("Failed to connect to database: %v", err)
 	}
 	log.Println("Database connection established")
+	return db
 }
 
 // CloseDatabase closes the database connection

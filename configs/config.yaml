@@ -1,0 +1,6 @@
+app:
+  name: common-service
+  port: 8080
+jwt:
+  secret: your-secret-key
+  expiration_minutes: 60

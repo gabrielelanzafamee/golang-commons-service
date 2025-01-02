@@ -6,10 +6,10 @@ import (
 	"github.com/spf13/viper"
 )
 
-func LoadConfig() {
+func LoadConfig(path string) {
 	viper.SetConfigName("config")
 	viper.SetConfigType("yaml")
-	viper.AddConfigPath("./configs")
+	viper.AddConfigPath(path)
 
 	err := viper.ReadInConfig()
 	if err != nil {

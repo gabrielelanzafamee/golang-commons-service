@@ -7,22 +7,19 @@ import (
 	"gorm.io/gorm"
 )
 
-var DB *gorm.DB
-
 // ConnectDatabase initializes the database connection
-func ConnectDatabase() {
+func ConnectDatabase(db *gorm.DB, databaseName string) {
 	var err error
-	DB, err = gorm.Open(sqlite.Open("common-service.db"), &gorm.Config{})
+	db, err = gorm.Open(sqlite.Open(databaseName), &gorm.Config{})
 	if err != nil {
 		log.Fatalf("Failed to connect to database: %v", err)
 	}
-
 	log.Println("Database connection established")
 }
 
 // CloseDatabase closes the database connection
-func CloseDatabase() {
-	sqlDB, err := DB.DB()
+func CloseDatabase(db *gorm.DB) {
+	sqlDB, err := db.DB()
 	if err != nil {
 		log.Fatalf("Failed to retrieve database instance: %v", err)
 	}

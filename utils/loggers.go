@@ -6,10 +6,10 @@ import (
 	"github.com/sirupsen/logrus"
 )
 
-var Logger = logrus.New()
-
-func InitLogger() {
+func InitLogger() *logrus.Logger {
+	var Logger = logrus.New()
 	Logger.SetFormatter(&logrus.JSONFormatter{})
 	Logger.SetOutput(os.Stdout)
 	Logger.SetLevel(logrus.InfoLevel)
+	return Logger
 }
